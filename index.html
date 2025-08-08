@@ -1,0 +1,870 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Banner Editor&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.editor-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.editor-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.editor-header h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.controls-section {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #e2e8f0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group input[type="text"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group textarea,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group input[type="file"] {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #cbd5e1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: border-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group input:focus,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group textarea:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group textarea {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 80px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>resize: vertical;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.cta-controls {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1fr 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group select {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #cbd5e1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: border-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.control-group select:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.file-upload-area {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 3px dashed #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.file-upload-area:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f1f5f9;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.file-upload-area.dragover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #eff6ff;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.download-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.2s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.download-btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.download-btn:disabled {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: not-allowed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Preview wrapper for centering */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.preview-wrapper {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #f3f4f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Banner styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #f3f4f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.desktop-size {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 900px; /* Proportional preview size */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 300px; /* Maintains 3:1 ratio */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 384px; /* Half of 768px for preview */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 300px; /* Half of 600px for preview */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container:not(.desktop-size):not(.mobile-size) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 300px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container:not(.desktop-size):not(.mobile-size)::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: "Please select a banner size";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-image {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>object-fit: cover;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>object-position: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>image-rendering: -webkit-optimize-contrast;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>image-rendering: crisp-edges;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Desktop gradient and content positioning */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.desktop-size .gradient-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 60%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.desktop-size .banner-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 5%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Mobile gradient and content positioning - bottom center */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .gradient-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 70%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .banner-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 5%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.small-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .small-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.i-logo {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 1.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.big-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Scale text for different sizes */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .big-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .small-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.7rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .description {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .bmw-cta-wrapper {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.mobile-size .bmw-cta-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.description {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 400;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.banner-container.desktop-size .description {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 80%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bmw-cta-wrapper {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bmw-cta-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bmw-cta-btn-blue {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #1a73e8;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bmw-cta-btn-blue:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #1557b0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white !important;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bmw-cta-btn-transparent {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(0, 0, 0, 0);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white !important;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bmw-cta-btn-transparent:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(255, 255, 255, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white !important;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Mobile responsive for the editor */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.editor-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>box-shadow: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.cta-controls {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.preview-wrapper {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 20px 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.banner-container.desktop-size {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>max-width: 450px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 150px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.banner-container.mobile-size {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>max-width: 384px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 300px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="editor-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="editor-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;The Potato Banner Editor&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Upload an image, customize your text, and download your banner&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="controls-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="imageUpload"&gt;Upload Background Image&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="file-upload-area" id="fileUploadArea"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="file" id="imageUpload" accept="image/*" style="display: none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Click here or drag &amp; drop an image&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;small&gt;Supports JPG, PNG, WebP&lt;/small&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="smallHeader"&gt;Small Header Text&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="smallHeader" placeholder="Small Header Text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="bigHeader"&gt;Main Headline&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="bigHeader" placeholder="Main Headline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="description"&gt;Description&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;textarea id="description" placeholder="Description"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="cta1"&gt;CTA Button Text&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="cta1" placeholder="CTA Button Text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="imagePosition"&gt;Image Position&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;select id="imagePosition"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="center"&gt;Center&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="top"&gt;Top&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="bottom"&gt;Bottom&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="left"&gt;Left&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="right"&gt;Right&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="top left"&gt;Top Left&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="top right"&gt;Top Right&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="bottom left"&gt;Bottom Left&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="bottom right"&gt;Bottom Right&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="bannerSize"&gt;Banner Size&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;select id="bannerSize"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value=""&gt;Select Banner Size&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="desktop"&gt;Desktop (2700 × 900 px)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="mobile"&gt;Mobile (768 × 600 px)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="download-btn" id="downloadBtn" disabled&gt;Download Banner&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="preview-wrapper"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="banner-container" id="bannerPreview"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img class="banner-image" id="bannerImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Crect width='100%25' height='100%25' fill='%23e0e0e0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%23666' text-anchor='middle' dy='.3em'%3EUpload an image to get started%3C/text%3E%3C/svg%3E" alt="Banner background" style="display: none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="gradient-overlay" style="display: none;"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="banner-content" style="display: none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="small-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="smallHeaderDisplay"&gt;Small Header Text&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h1 class="big-header" id="bigHeaderDisplay"&gt;Main Headline&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="description" id="descriptionDisplay"&gt;Description&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bmw-cta-wrapper"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#" class="bmw-cta-btn bmw-cta-btn-blue" id="cta1Display"&gt;CTA Button Text&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// DOM elements</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const imageUpload = document.getElementById('imageUpload');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const fileUploadArea = document.getElementById('fileUploadArea');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bannerImage = document.getElementById('bannerImage');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const downloadBtn = document.getElementById('downloadBtn');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bannerPreview = document.getElementById('bannerPreview');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bannerSize = document.getElementById('bannerSize');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const imagePosition = document.getElementById('imagePosition');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Text elements</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const smallHeader = document.getElementById('smallHeader');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bigHeader = document.getElementById('bigHeader');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const description = document.getElementById('description');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cta1 = document.getElementById('cta1');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Display elements</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const smallHeaderDisplay = document.getElementById('smallHeaderDisplay');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bigHeaderDisplay = document.getElementById('bigHeaderDisplay');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const descriptionDisplay = document.getElementById('descriptionDisplay');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cta1Display = document.getElementById('cta1Display');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// File upload handlers</p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileUploadArea.addEventListener('click', () =&gt; imageUpload.click());</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileUploadArea.addEventListener('dragover', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fileUploadArea.classList.add('dragover');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileUploadArea.addEventListener('dragleave', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fileUploadArea.classList.remove('dragover');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>fileUploadArea.addEventListener('drop', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fileUploadArea.classList.remove('dragover');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const files = e.dataTransfer.files;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (files.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>handleImageUpload(files[0]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>imageUpload.addEventListener('change', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (e.target.files.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>handleImageUpload(e.target.files[0]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Handle image upload</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handleImageUpload(file) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!file.type.startsWith('image/')) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert('Please upload a valid image file.');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const reader = new FileReader();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reader.onload = (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bannerImage.src = e.target.result;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Show the image regardless of size selection</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bannerImage.style.display = 'block';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Enable download only if size is also selected</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (bannerSize.value) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>downloadBtn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reader.readAsDataURL(file);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Text update handlers</p>
+<p class="p1"><span class="Apple-converted-space">        </span>smallHeader.addEventListener('input', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>smallHeaderDisplay.textContent = e.target.value || 'Small Header Text';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>bigHeader.addEventListener('input', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bigHeaderDisplay.textContent = e.target.value || 'Main Headline';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>description.addEventListener('input', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>descriptionDisplay.textContent = e.target.value || 'Description';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>cta1.addEventListener('input', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cta1Display.textContent = e.target.value || 'CTA Button Text';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Image position handler</p>
+<p class="p1"><span class="Apple-converted-space">        </span>imagePosition.addEventListener('change', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bannerImage.style.objectPosition = e.target.value;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Banner size handler</p>
+<p class="p1"><span class="Apple-converted-space">        </span>bannerSize.addEventListener('change', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (e.target.value) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bannerPreview.className = 'banner-container ' + e.target.value + '-size';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Show banner content when size is selected</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const bannerContent = bannerPreview.querySelector('.banner-content');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const gradientOverlay = bannerPreview.querySelector('.gradient-overlay');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (bannerContent) bannerContent.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (gradientOverlay) gradientOverlay.style.display = 'block';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Always show image if it exists</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (bannerImage.src) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bannerImage.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Enable download if image is also uploaded</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (bannerImage.src &amp;&amp; !bannerImage.src.includes('data:image/svg+xml')) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>downloadBtn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bannerPreview.className = 'banner-container';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Hide banner content when no size selected, but keep image visible</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const bannerContent = bannerPreview.querySelector('.banner-content');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const gradientOverlay = bannerPreview.querySelector('.gradient-overlay');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (bannerContent) bannerContent.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (gradientOverlay) gradientOverlay.style.display = 'none';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Keep image visible even without size selection</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (bannerImage.src &amp;&amp; !bannerImage.src.includes('data:image/svg+xml')) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bannerImage.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>downloadBtn.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Download functionality with exact preview matching</p>
+<p class="p1"><span class="Apple-converted-space">        </span>downloadBtn.addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>downloadBtn.textContent = '⏳ Generating...';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>downloadBtn.disabled = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const selectedSize = bannerSize.value;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dimensions = selectedSize === 'desktop' ?<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ width: 2700, height: 900 } :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ width: 768, height: 600 };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Calculate scale factor from preview to final size</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const previewDimensions = selectedSize === 'desktop' ?<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ width: 900, height: 300 } :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ width: 384, height: 300 };</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const scaleX = dimensions.width / previewDimensions.width;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const scaleY = dimensions.height / previewDimensions.height;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Create a high-resolution canvas</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const canvas = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>canvas.width = dimensions.width;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>canvas.height = dimensions.height;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const ctx = canvas.getContext('2d');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Draw the background image</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const img = new Image();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>img.crossOrigin = 'anonymous';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>await new Promise((resolve, reject) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>img.onload = resolve;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>img.onerror = reject;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>img.src = bannerImage.src;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Draw image with object-fit: cover behavior</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const drawImageCover = (ctx, img, x, y, w, h) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const imgRatio = img.width / img.height;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const canvasRatio = w / h;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let drawWidth, drawHeight, offsetX = 0, offsetY = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (imgRatio &gt; canvasRatio) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>drawHeight = h;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>drawWidth = h * imgRatio;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>drawWidth = w;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>drawHeight = w / imgRatio;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Apply object-position</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const position = imagePosition.value || 'center';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const positions = position.split(' ');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Horizontal positioning</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (positions.includes('left')) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>offsetX = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (positions.includes('right')) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>offsetX = w - drawWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>offsetX = (w - drawWidth) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Vertical positioning</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (positions.includes('top')) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>offsetY = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (positions.includes('bottom')) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>offsetY = h - drawHeight;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>offsetY = (h - drawHeight) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawImageCover(ctx, img, 0, 0, dimensions.width, dimensions.height);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Draw gradient overlay</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (selectedSize === 'desktop') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const gradient = ctx.createLinearGradient(0, 0, dimensions.width * 0.6, 0);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gradient.addColorStop(0, 'rgba(0,0,0,0.8)');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gradient.addColorStop(0.5, 'rgba(0,0,0,0.5)');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gradient.addColorStop(1, 'rgba(0,0,0,0)');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillStyle = gradient;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillRect(0, 0, dimensions.width * 0.6, dimensions.height);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Mobile: bottom gradient</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const gradient = ctx.createLinearGradient(0, dimensions.height, 0, dimensions.height * 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gradient.addColorStop(0, 'rgba(0,0,0,0.9)');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gradient.addColorStop(0.6, 'rgba(0,0,0,0.6)');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gradient.addColorStop(1, 'rgba(0,0,0,0)');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillStyle = gradient;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillRect(0, dimensions.height * 0.3, dimensions.width, dimensions.height * 0.7);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Set up text styles</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillStyle = 'white';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.textBaseline = 'top';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.shadowBlur = 3;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.shadowOffsetX = 1;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.shadowOffsetY = 1;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (selectedSize === 'desktop') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Desktop layout - left aligned</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const leftMargin = dimensions.width * 0.05;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Calculate total content height to center it properly</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const smallHeaderHeight = 60;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const bigHeaderHeight = 110;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const descriptionHeight = 50;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonHeight = 70;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const spacing = 40;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const totalContentHeight = smallHeaderHeight + bigHeaderHeight + descriptionHeight + buttonHeight + (spacing * 3);</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let currentY = (dimensions.height - totalContentHeight) / 2;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Small header</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `600 ${60}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillText(smallHeaderDisplay.textContent, leftMargin, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY += smallHeaderHeight + 20;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Big header</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `700 ${110}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const bigHeaderLines = wrapText(ctx, bigHeaderDisplay.textContent, dimensions.width * 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bigHeaderLines.forEach(line =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>ctx.fillText(line, leftMargin, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>currentY += 120;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY += spacing;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Description</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `400 ${50}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const descLines = wrapText(ctx, descriptionDisplay.textContent, dimensions.width * 0.4);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>descLines.forEach(line =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>ctx.fillText(line, leftMargin, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>currentY += 65;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY += spacing + 20;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// CTA Button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.shadowBlur = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonPadding = { x: 90, y: 35 };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `600 ${45}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonText = cta1Display.textContent;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonWidth = ctx.measureText(buttonText).width + (buttonPadding.x * 2);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonHeightFinal = 55 + (buttonPadding.y * 2);</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillStyle = '#1a73e8';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>roundRect(ctx, leftMargin, currentY, buttonWidth, buttonHeightFinal, 15);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fill();</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillStyle = 'white';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillText(buttonText, leftMargin + buttonPadding.x, currentY + buttonPadding.y);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Mobile layout - center bottom aligned</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.textAlign = 'center';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const centerX = dimensions.width / 2;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const bottomMargin = dimensions.height * 0.05;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let currentY = dimensions.height - bottomMargin;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Work backwards from bottom</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// CTA Button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.shadowBlur = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonPadding = { x: 40, y: 16 };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `600 ${18}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonText = cta1Display.textContent;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonWidth = ctx.measureText(buttonText).width + (buttonPadding.x * 2);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const buttonHeight = 24 + (buttonPadding.y * 2);</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= buttonHeight;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillStyle = '#1a73e8';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>roundRect(ctx, centerX - buttonWidth/2, currentY, buttonWidth, buttonHeight, 8);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fill();</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillStyle = 'white';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillText(buttonText, centerX, currentY + buttonPadding.y);</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= 30;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.shadowBlur = 3;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Description</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `400 ${20}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const descLines = wrapText(ctx, descriptionDisplay.textContent, dimensions.width * 0.85);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= descLines.length * 28;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>descLines.forEach(line =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>ctx.fillText(line, centerX, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>currentY += 28;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= descLines.length * 28 + 20;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Big header</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `700 ${36}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const bigHeaderLines = wrapText(ctx, bigHeaderDisplay.textContent, dimensions.width * 0.85);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= bigHeaderLines.length * 44;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bigHeaderLines.forEach(line =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>ctx.fillText(line, centerX, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>currentY += 44;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= bigHeaderLines.length * 44 + 15;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Small header</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.font = `600 ${18}px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentY -= 24;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ctx.fillText(smallHeaderDisplay.textContent, centerX, currentY);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Convert to blob and download</p>
+<p class="p1"><span class="Apple-converted-space">                </span>canvas.toBlob((blob) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const url = URL.createObjectURL(blob);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const link = document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.download = `potato-banner-${selectedSize}-${dimensions.width}x${dimensions.height}.webp`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.href = url;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.appendChild(link);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.click();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.removeChild(link);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>URL.revokeObjectURL(url);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}, 'image/webp', 0.95);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error('Error generating image:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert('Error generating image. Please try again.');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>downloadBtn.textContent = 'Download Banner';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>downloadBtn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Helper function to wrap text</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function wrapText(ctx, text, maxWidth) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const words = text.split(' ');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const lines = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentLine = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let word of words) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const testLine = currentLine ? currentLine + ' ' + word : word;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const metrics = ctx.measureText(testLine);</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (metrics.width &gt; maxWidth &amp;&amp; currentLine) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lines.push(currentLine);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = word;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = testLine;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentLine) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>lines.push(currentLine);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return lines;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Helper function to draw rounded rectangle</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function roundRect(ctx, x, y, width, height, radius) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.moveTo(x + radius, y);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.lineTo(x + width - radius, y);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.quadraticCurveTo(x + width, y, x + width, y + radius);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.lineTo(x + width, y + height - radius);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.lineTo(x + radius, y + height);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.quadraticCurveTo(x, y + height, x, y + height - radius);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.lineTo(x, y + radius);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.quadraticCurveTo(x, y, x + radius, y);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.closePath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
