@@ -249,7 +249,7 @@
         }
 
         .download-btn {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            background: #000000;
             color: white;
             border: none;
             padding: 15px 30px;
@@ -257,12 +257,13 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
             margin-top: 20px;
         }
 
         .download-btn:hover {
             transform: translateY(-2px);
+            background: #1a1a1a;
         }
 
         .download-btn:disabled {
@@ -400,16 +401,19 @@
 
         /* Scale text for different sizes */
         .banner-container.mobile-size .big-header {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            line-height: 1.05;
+            margin-bottom: 0.3rem;
         }
 
         .banner-container.mobile-size .small-header {
             font-size: 0.7rem;
+            margin-bottom: 0.3rem;
         }
 
         .banner-container.mobile-size .description {
             font-size: 0.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .banner-container.mobile-size .bmw-cta-wrapper {
@@ -518,7 +522,7 @@
 <body>
     <div class="editor-container">
         <div class="editor-header">
-            <h1>The Potato Banner Editor - Enhanced</h1>
+            <h1>Bluesky Banner Editor</h1>
             <p>Upload an image, customize your brand colors, and download your banner</p>
         </div>
 
@@ -1241,11 +1245,18 @@
                     ctx.fillText(smallHeaderDisplay.textContent, centerX, currentY);
                 }
 
-                // Convert to blob and download
+                // Convert to blob and download with custom filename
                 canvas.toBlob((blob) => {
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement('a');
-                    link.download = `potato-banner-${selectedSize}-${currentBrand}-${dimensions.width}x${dimensions.height}.webp`;
+                    
+                    // Create filename based on brand and main headline
+                    const headline = bigHeaderDisplay.textContent.toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                    const sizeText = selectedSize === 'desktop' ? 'desktop-2700x900' : 'mobile-768x600';
+                    
+                    link.download = `${currentBrand}-${headline}-homepage-banner-${sizeText}.webp`;
                     link.href = url;
                     document.body.appendChild(link);
                     link.click();
