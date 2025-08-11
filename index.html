@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlueSky Banner Editor</title>
+    <title>Banner Editor - Enhanced</title>
     <style>
         * {
             margin: 0;
@@ -589,7 +589,7 @@
                 <label>Font Settings</label>
                 <div class="font-selector">
                     <select id="fontFamily">
-                        <option value="bmw">BMW Font (Default)</option>
+                        <option value="bmw">BMW Font</option>
                         <option value="subaru">Subaru Font</option>
                         <option value="mazda">Mazda Font</option>
                         <option value="landrover">Land Rover Font</option>
@@ -769,6 +769,9 @@
                 case 'toyota':
                     fontToApply = 'Toyota-Font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
                     break;
+                case 'system':
+                    fontToApply = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                    break;
                 default:
                     fontToApply = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
             }
@@ -776,9 +779,7 @@
             document.querySelector('.banner-content').style.fontFamily = fontToApply;
             
             // Update font selector to show the current brand font
-            if (brandFont !== 'system' && brandFont !== 'custom') {
-                fontFamily.value = brandFont;
-            }
+            fontFamily.value = brandFont;
         }
 
         // Select BMW brand on load (first brand) and apply its font
