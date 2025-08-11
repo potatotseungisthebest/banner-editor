@@ -397,7 +397,7 @@
             font-weight: 900;
             margin-bottom: 0.5rem;
             line-height: 1.1;
-            letter-spacing: -0.02em;
+            letter-spacing: 0.02em;
         }
 
         /* Scale text for different sizes */
@@ -497,27 +497,7 @@
             }
         }
 
-        /* Custom font info box */
-        .info-box {
-            background: #eff6ff;
-            border: 2px solid #3b82f6;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .info-box h3 {
-            color: #1d4ed8;
-            margin-bottom: 10px;
-        }
-
-        .info-box code {
-            background: #1e293b;
-            color: #60a5fa;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+        /* Custom font info box - removed */
     </style>
 </head>
 <body>
@@ -609,16 +589,15 @@
                 <label>Font Settings</label>
                 <div class="font-selector">
                     <select id="fontFamily">
-                        <option value="system">System Default</option>
-                        <option value="bmw">BMW Font</option>
+                        <option value="bmw">BMW Font (Default)</option>
                         <option value="subaru">Subaru Font</option>
                         <option value="mazda">Mazda Font</option>
                         <option value="landrover">Land Rover Font</option>
                         <option value="toyota">Toyota Font</option>
+                        <option value="system">System Default</option>
                         <option value="arial">Arial</option>
                         <option value="georgia">Georgia</option>
                         <option value="courier">Courier New</option>
-                        <option value="custom">Custom Font (see instructions)</option>
                     </select>
                     <select id="textColor">
                         <option value="white">White Text</option>
@@ -629,28 +608,6 @@
                 </div>
             </div>
 
-            <!-- Custom Font Instructions -->
-            <div class="info-box" id="customFontInfo" style="display: none;">
-                <h3>📝 How to Add Your Custom Font:</h3>
-                <ol style="margin-left: 20px; line-height: 1.8;">
-                    <li>Upload your font files (.woff2, .woff, .ttf) to your server or use Google Fonts</li>
-                    <li>Replace the <code>@font-face</code> section in the CSS with:<br>
-                        <code style="display: block; margin: 10px 0; padding: 10px; background: #1e293b;">
-                            @font-face {<br>
-                            &nbsp;&nbsp;font-family: 'YourBrandFont';<br>
-                            &nbsp;&nbsp;src: url('your-font.woff2') format('woff2');<br>
-                            }
-                        </code>
-                    </li>
-                    <li>Or for Google Fonts, add this in the <code>&lt;head&gt;</code>:<br>
-                        <code style="display: block; margin: 10px 0; padding: 10px; background: #1e293b;">
-                            &lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"&gt;
-                        </code>
-                    </li>
-                    <li>Update the font-family in the JavaScript where it says <code>'CustomBrand'</code></li>
-                </ol>
-            </div>
-
             <div class="control-group">
                 <label for="smallHeader">Small Header Text</label>
                 <input type="text" id="smallHeader" placeholder="Small Header Text">
@@ -659,6 +616,19 @@
             <div class="control-group">
                 <label for="bigHeader">Main Headline</label>
                 <input type="text" id="bigHeader" placeholder="Main Headline">
+            </div>
+
+            <!-- Headline Font Weight - Moved under Main Headline -->
+            <div class="control-group">
+                <label for="headlineWeight">Headline Font Weight</label>
+                <select id="headlineWeight">
+                    <option value="400">Regular (400)</option>
+                    <option value="500">Medium (500)</option>
+                    <option value="600">Semi-Bold (600)</option>
+                    <option value="700">Bold (700)</option>
+                    <option value="800">Extra Bold (800)</option>
+                    <option value="900" selected>Black (900)</option>
+                </select>
             </div>
 
             <div class="control-group">
@@ -742,7 +712,7 @@
         // Font elements
         const fontFamily = document.getElementById('fontFamily');
         const textColor = document.getElementById('textColor');
-        const customFontInfo = document.getElementById('customFontInfo');
+        const headlineWeight = document.getElementById('headlineWeight');
 
         // Current settings
         let currentBrand = 'bmw';
@@ -754,6 +724,7 @@
         };
         let currentFont = 'bmw';
         let currentTextColor = 'white';
+        let currentHeadlineWeight = '900';
 
         // Brand selector
         document.querySelectorAll('.brand-option').forEach(option => {
@@ -871,10 +842,15 @@
             return `rgba(${r},${g},${b},${opacity})`;
         }
 
+        // Headline weight handler
+        headlineWeight.addEventListener('change', (e) => {
+            currentHeadlineWeight = e.target.value;
+            bigHeaderDisplay.style.fontWeight = currentHeadlineWeight;
+        });
+
         // Font handlers
         fontFamily.addEventListener('change', (e) => {
             currentFont = e.target.value;
-            customFontInfo.style.display = e.target.value === 'custom' ? 'block' : 'none';
             
             let fontToApply = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
             
@@ -902,9 +878,6 @@
                     break;
                 case 'courier':
                     fontToApply = '"Courier New", monospace';
-                    break;
-                case 'custom':
-                    fontToApply = 'CustomBrand, sans-serif'; // This will use your custom font
                     break;
             }
             
@@ -1046,8 +1019,6 @@
                     return 'Georgia, serif';
                 case 'courier':
                     return '"Courier New", monospace';
-                case 'custom':
-                    return 'CustomBrand, sans-serif';
                 default:
                     return '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
             }
