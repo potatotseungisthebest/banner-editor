@@ -11,10 +11,11 @@
             box-sizing: border-box;
         }
 
-        /* BMW Font - Using GitHub Pages WOFF format */
+        /* BMW Font - Using GitHub Pages with multiple formats for better compatibility */
         @font-face {
             font-family: 'BMW-Font';
-            src: url('https://potatotseungisthebest.github.io/fonts/BMW.woff') format('woff');
+            src: url('https://potatotseungisthebest.github.io/fonts/BMW.woff') format('woff'),
+                 url('https://potatotseungisthebest.github.io/fonts/BMW.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -394,9 +395,10 @@
         
         .big-header {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 0.5rem;
             line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
         /* Scale text for different sizes */
